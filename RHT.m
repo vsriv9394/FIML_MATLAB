@@ -51,13 +51,18 @@ function [obj, sens, features, beta] = RHT(T_inf, nPoints, dt, nIter,...
     
     end
     
-    plot(y, T, 'b');
+    if ~isempty(nn)
+        plot(y, T, 'r')
+    else
+        plot(y, T, 'b')
+    end
     hold on
     
     obj  = 0;
     sens = [];
     
     %===================================================================
+    % AT THE END OF THE SIMULATION:
     % IF SOME DATA IS PROVIDED, CALCULATE OBJECTIVE AND SENSITIVITIES
     % (ANY TECHNIQUE MAY BE CHOSEN FOR SENSITIVITY EVALUATION
     %  HERE WE HAVE CHOSEN ANALYTICAL GRADIENTS)
@@ -66,7 +71,7 @@ function [obj, sens, features, beta] = RHT(T_inf, nPoints, dt, nIter,...
         psi  = (jacT.')\(2.0*(T - data)/size(T,1));
         sens = -(jacbeta.')*psi;
         obj  = sum((T - data).^2 / size(T,1));
-        plot(y, data, 'r')
+        plot(y, data, 'k')
     end
     %===================================================================
     
