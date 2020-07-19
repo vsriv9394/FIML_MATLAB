@@ -1,4 +1,4 @@
-NN = FIML(1000, 20, 1e-2, [7; 7], {@solver1, @solver2}, [0.5, 0.5], 0.0);
+NN = FIML(1000, 100, 1e-2, [7; 7], {@solver1, @solver2}, [1.0, 10.0], 0.0);
 
 function [obj, sens, features, beta] = solver1(NN)
 
